@@ -1,0 +1,41 @@
+#
+# np-se-assign
+# continuous integration (ci) pipeline
+#
+
+name: "CI Pipeline"
+on: push
+jobs:
+  # check spelling typos in source code
+  spellcheck-code:
+    runs-on: ubuntu-20.04
+    name: "Spellcheck bentobox codebase"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: "Pull codespell spell checker"
+        run: |
+          pip install codespell==2.0.0
+      - name: "Spellcheck codebase"
+        run: |
+          codespell .
+
+  # build SE assign on windows and linux with dotnet cli
+  build-se:
+    strategy:
+      matrix:
+        os: 
+        - ubuntu-20.04
+        - windows-2019
+      fail-fast: false
+    runs-on: ${{matrix.os}}
+    name: "Build SE Assignment on ${{matrix.os}}"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      - run: |
+          dotnet build .
