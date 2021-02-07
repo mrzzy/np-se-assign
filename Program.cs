@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace np_se_assign
+namespace NP.SE.Assignment
 {
     class Program
     {
