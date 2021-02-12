@@ -5,6 +5,7 @@ namespace NP.SE.Assignment
     /* Represents a HR Staff that administers the parking system */
     public class HrStaff: User
     {
+        
         public HrStaff(string userId, string name, string password, string mobileNumber, string paymentMode)
         {
             this.UserId = userId;
@@ -13,7 +14,7 @@ namespace NP.SE.Assignment
             this.MobileNumber = mobileNumber;
         }
 
-        public void GenerateFinancialReport()
+        public FinancialReport GenerateFinancialReport()
         {
             throw new NotImplementedException();
         }
