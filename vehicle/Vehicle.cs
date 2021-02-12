@@ -6,5 +6,15 @@ namespace NP.SE.Assignment
         public string LicenseNumber { get;  private set;}
         public int IUNumber { get; private set; }
         public NpUser owner { get; private set; }
+        public IIPricingStrategy pricingStrategy { get; private set; }
+
+        public Vehicle(string type, string licenseNumber, int iUNumber, NpUser owner, IIPricingStrategy pricingStrategy)
+        {
+            Type = type;
+            LicenseNumber = licenseNumber;
+            IUNumber = iUNumber;
+            this.owner = owner;
+            this.pricingStrategy = pricingStrategy;
+        }
     }
 }
