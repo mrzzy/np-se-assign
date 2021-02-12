@@ -18,7 +18,7 @@ namespace NP.SE.Assignment
                     // $5 per hour for heavy vehiclef
                     return (5.0 / 60.0) * duration.TotalMinutes;
                 default:
-                    throw new NotSupportedException();
+                    throw new NotSupportedException("Unsupported VehicleType given: " + vehicleType.ToString());
             }
         }
     }
