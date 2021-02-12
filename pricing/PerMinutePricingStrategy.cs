@@ -12,7 +12,7 @@ namespace NP.SE.Assignment
                     // $1 per hour for motorcycles
                     return (1.0 / 60.0) * duration.TotalMinutes;
                 case VehicleType.Car:
-                    // $2 per hour fo cars
+                    // $2 per hour of cars
                     return (2.0 / 60.0) * duration.TotalMinutes;
                 case VehicleType.Heavy:
                     // $5 per hour for heavy vehiclef

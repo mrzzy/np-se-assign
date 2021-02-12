@@ -9,7 +9,7 @@ jobs:
   # check spelling typos in source code
   spellcheck-code:
     runs-on: ubuntu-20.04
-    name: "Spellcheck bentobox codebase"
+    name: "Spellcheck codebase"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -26,7 +26,7 @@ jobs:
   build-se:
     strategy:
       matrix:
-        os: 
+        os:
         - ubuntu-20.04
         - windows-2019
       fail-fast: false
