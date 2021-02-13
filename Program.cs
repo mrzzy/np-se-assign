@@ -66,7 +66,7 @@ namespace NP.SE.Assignment
 
                     if (currentUser is null)
                     {
-                        Console.WriteLine("Login unsuccesful!");
+                        Console.WriteLine("Login unsuccessful!");
                         Console.WriteLine("");
                     }
 
