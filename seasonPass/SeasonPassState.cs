@@ -12,37 +12,27 @@ namespace NP.SE.Assignment
 
         protected SeasonPass Pass { get; set; }
 
-        public virtual SeasonPassState reject()
+        public virtual SeasonPassState Reject()
         {
             throw new NotImplementedException();
         }
 
-        public virtual SeasonPassState approve()
+        public virtual SeasonPassState Approve()
         {
             throw new NotImplementedException();
         }
 
-        public virtual SeasonPassState renew()
+        public virtual SeasonPassState Renew(int nMonth)
         {
             throw new NotImplementedException();
         }
 
-        public virtual SeasonPassState terminate()
+        public virtual SeasonPassState Park()
         {
             throw new NotImplementedException();
         }
 
-        public virtual SeasonPassState refund()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual SeasonPassState park()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual SeasonPassState exit()
+        public virtual SeasonPassState Exit()
         {
             throw new NotImplementedException();
         }
