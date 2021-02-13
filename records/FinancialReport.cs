@@ -36,7 +36,7 @@ namespace NP.SE.Assignment
                 
             }
             
-            else if(carparkchoice == "Y"); 
+            else if(carparkchoice == "Y")
             {
                 Console.Write("Choose a vehicle type.\n1. Car\n2. Motorcyle\nEnter choice:");
                 int vtypechoice = Convert.ToInt32(Console.ReadLine()); 
