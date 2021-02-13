@@ -1,9 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace NP.SE.Assignment
 {
    
-    
     public class FinancialReport
     {
         public List<ParkingRecord> records;
@@ -18,10 +18,10 @@ namespace NP.SE.Assignment
             
             if (carparkchoice == "N")
             {
-                Console.Write("Choose a carpark location." + \n + "Carpark 1" + \n + "Carpark 2" + \n + "Carpark 3" + \n + "Enter nuumber of Carpark:");
+                Console.Write("Choose a carpark location.\nCarpark 1\nCarpark 2\nCarpark 3\nEnter nuumber of Carpark:");
                 int locationchoice = Convert.ToInt32(Console.ReadLine()); 
                 
-                Console.Write("Choose a vehicle type." + \n + "1. Car" + \n + "2. Motorcyle" + \n + "Enter choice:");
+                Console.Write("Choose a vehicle type.\n1. Car\n2. Motorcyle\nEnter choice:");
                 int vtypechoice = Convert.ToInt32(Console.ReadLine()); 
                 
                 if (vtypechoice == 1)
@@ -29,16 +29,16 @@ namespace NP.SE.Assignment
                     /// enter the report details and codes here
                 }
                 
-                else (vtypechoice == 2)
+                else if (vtypechoice == 2)
                 {
                     /// enter the report details and codes here
                 }
                 
             }
             
-            elseif(carparkchoice == "Y"); 
+            else if(carparkchoice == "Y"); 
             {
-                Console.Write("Choose a vehicle type." + \n + "1. Car" + \n + "2. Motorcyle" + \n + "Enter choice:");
+                Console.Write("Choose a vehicle type.\n1. Car\n2. Motorcyle\nEnter choice:");
                 int vtypechoice = Convert.ToInt32(Console.ReadLine()); 
                 
                 if (vtypechoice == 1)
@@ -46,15 +46,15 @@ namespace NP.SE.Assignment
                     /// enter the report details and codes here
                 }
                 
-                else (vtypechoice == 2)
+                else if (vtypechoice == 2)
                 {
                     /// enter the report details and codes here
                 }
                 
             }
-                
-                    
-            
+
+            // return something to prevent error 
+            return "";
         }
     }
 }
