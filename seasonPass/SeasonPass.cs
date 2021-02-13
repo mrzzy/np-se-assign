@@ -41,5 +41,14 @@ namespace NP.SE.Assignment
             State = State.Renew(nMonth);
         }
 
+        public void Park()
+        {
+            State = State.Park();
+        }
+
+        public void Exit()
+        {
+            State = State.Exit();
+        }
     }
 }
