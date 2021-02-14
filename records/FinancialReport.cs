@@ -7,7 +7,10 @@ namespace NP.SE.Assignment
     public class FinancialReport
     {
         public List<Carpark> carparks;
-        public int month; 
+        public int month;
+
+        //public CarparkList carParkList { get; internal set; }
+
         public string GenerateReport()
         {
             Console.Write("Enter the month for the Financial Report:"); 
@@ -55,6 +58,14 @@ namespace NP.SE.Assignment
 
             // return something to prevent error 
             return "";
+        }
+
+        public class CarparkList
+        {
+            internal void Add(Carpark carpark)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
