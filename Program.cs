@@ -22,6 +22,8 @@ namespace NP.SE.Assignment
             userList.Add(new HrStaff("U03", "John Doe", "hrPassword", "87654321", "Debit Card"));
 
             NpUser testUser = ((NpUser)userList[1]);
+
+            // used in Financial Report dummy data
             testUser.registerVehicle(VehicleType.Car, "AMN6253L", "6273819203");
             testUser.registerVehicle(VehicleType.Car, "PLN7895L", "6273819204");
             testUser.registerVehicle(VehicleType.Car, "FCN0937J", "6273819205");
@@ -31,6 +33,8 @@ namespace NP.SE.Assignment
             testUser.registerVehicle(VehicleType.Motorcycle, "MTR9098E", "6273819209");
             testUser.registerVehicle(VehicleType.Motorcycle, "MTR8876E", "6273819210");
             testUser.registerVehicle(VehicleType.Motorcycle, "MTR6537E", "6273819211");
+            testUser.registerVehicle(VehicleType.Car, "ILP0987F", "6273819212"); // have season pass
+            testUser.registerVehicle(VehicleType.Motorcycle, "MTR6726E", "6273819212"); // have season pass
 
             FinancialReport financialReport = new FinancialReport();
             financialReport.carparks = new List<Carpark>();
@@ -80,6 +84,11 @@ namespace NP.SE.Assignment
             parkingRecord1.ExitTime = new DateTime(2020, 7, 10, 16, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[5].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord7);
+
+            ParkingRecord parkingRecord14 = new ParkingRecord(014, testUser.vehicleList[9], financialReport.carparks[2], new DateTime(2020, 7, 25, 12, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 25, 16, 30, 0);
+            parkingRecord1.AmountCharged = 30;
+            financialReport.carparks[2].ParkingRecordList.Add(parkingRecord14);
 
 
             // Parking Records for Month of February 2021 in Carpark 3 for Car
