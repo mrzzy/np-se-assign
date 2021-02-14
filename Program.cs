@@ -42,6 +42,23 @@ namespace NP.SE.Assignment
             testUser.registerVehicle(VehicleType.Car, "FGH0972H", "6273819213"); // have season pass
             testUser.registerVehicle(VehicleType.Motorcycle, "MTR6726E", "6273819214"); // have season pass
 
+            // create season passes
+            Random rnd = new Random();
+            DateTime startDate = new DateTime(2021, 2, 1, 0, 0, 0);
+            var lastDay = DateTime.DaysInMonth(2021, 2);
+            DateTime endDate = new DateTime(2021, 2, lastDay, 23, 59, 59);
+            testUser.vehicleList[8].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
+            startDate = new DateTime(2021, 2, 1, 0, 0, 0);
+            lastDay = DateTime.DaysInMonth(2021, 4);
+            endDate = new DateTime(2021, 4, lastDay, 23, 59, 59);
+            testUser.vehicleList[9].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
+            startDate = new DateTime(2021, 3, 1, 0, 0, 0);
+            lastDay = DateTime.DaysInMonth(2021, 7);
+            endDate = new DateTime(2021, 7, lastDay, 23, 59, 59);
+            testUser.vehicleList[10].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
             //FinancialReport financialReport = new FinancialReport();
             financialReport.carparks = new List<Carpark>();
 
@@ -133,7 +150,7 @@ namespace NP.SE.Assignment
             parkingRecord1.AmountCharged = testUser.vehicleList[7].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord13);
 
-            ParkingRecord parkingRecord16 = new ParkingRecord(016, testUser.vehicleList[11], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
+            ParkingRecord parkingRecord16 = new ParkingRecord(016, testUser.vehicleList[10], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
             parkingRecord1.ExitTime = new DateTime(2020, 2, 15, 13, 30, 0);
             parkingRecord1.AmountCharged = 30;
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord16);
@@ -253,6 +270,7 @@ namespace NP.SE.Assignment
 
                 case 2:
                     Console.WriteLine("Applying for season pass!");
+                    ((NpUser)currentUser).applySeasonPass();
                     break;
 
                 case 3:
