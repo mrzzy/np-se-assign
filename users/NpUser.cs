@@ -8,7 +8,7 @@ namespace NP.SE.Assignment
     public class NpUser : User
     {
         public string PaymentMode { get; private set; }
-        public List<Vehicle> vehicleList { get; private set; }
+        public List<Vehicle> VehicleList { get; private set; }
 
         public NpUser(string userId, string name, string password,
                 string mobileNumber, string paymentMode)
@@ -18,7 +18,7 @@ namespace NP.SE.Assignment
             this.PasswordHash = Hash(password);
             this.MobileNumber = mobileNumber;
             this.PaymentMode = paymentMode;
-            this.vehicleList = new List<Vehicle>();
+            this.VehicleList = new List<Vehicle>();
         }
 
         public void applySeasonPass()
@@ -81,7 +81,7 @@ namespace NP.SE.Assignment
 
                 // find vehicle
                 Vehicle vehicle = null;
-                foreach (Vehicle aVehicle in vehicleList)
+                foreach (Vehicle aVehicle in VehicleList)
                 {
                     if (aVehicle.LicenseNumber == licenseNumber)
                     {
@@ -209,7 +209,7 @@ namespace NP.SE.Assignment
             if (validLicense && validiU)
             {
                 // VehicleType type, string licenseNumber, int iUNumber, NpUser owner
-                vehicleList.Add(new Vehicle(type, licenseNumber, iUNumber, this));
+                VehicleList.Add(new Vehicle(type, licenseNumber, iUNumber, this));
                 return true;
             }
 
