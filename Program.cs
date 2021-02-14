@@ -22,11 +22,11 @@ namespace NP.SE.Assignment
                     guestMenu();
 
                 // while np user
-                if (currentUser is NpUser)
+                else if (currentUser is NpUser)
                     npUserMenu();
 
                 // while hr staff
-                if (currentUser is HrStaff)
+                else if (currentUser is HrStaff)
                     hrUserMenu();
             }
         }
