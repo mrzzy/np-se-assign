@@ -4,11 +4,12 @@ namespace NP.SE.Assignment
     public class Vehicle {
         public VehicleType Type { get; private set; }
         public string LicenseNumber { get;  private set;}
-        public int IUNumber { get; private set; }
+        public string IUNumber { get; private set; }
         public NpUser Owner { get; private set; }
         public IIPricingStrategy PricingStrategy { get; private set; }
+        public SeasonPass SPass { get; private set; }
 
-        public Vehicle(VehicleType type, string licenseNumber, int iUNumber, NpUser owner)
+        public Vehicle(VehicleType type, string licenseNumber, string iUNumber, NpUser owner)
         {
             Type = type;
             LicenseNumber = licenseNumber;
@@ -17,7 +18,7 @@ namespace NP.SE.Assignment
             PricingStrategy = new PerMinutePricingStrategy();
         }
 
-        public Vehicle(VehicleType type, string licenseNumber, int iUNumber, NpUser owner, IIPricingStrategy pricingStrategy)
+        public Vehicle(VehicleType type, string licenseNumber, string iUNumber, NpUser owner, IIPricingStrategy pricingStrategy)
             : this(type, licenseNumber, iUNumber, owner) {
             PricingStrategy = pricingStrategy;
         }
