@@ -47,17 +47,17 @@ namespace NP.SE.Assignment
             DateTime startDate = new DateTime(2021, 1, 1, 0, 0, 0);
             var lastDay = DateTime.DaysInMonth(2020,1);
             DateTime endDate = new DateTime(2021, 1, lastDay, 23, 59, 59);
-            testUser.vehicleList[9].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+            testUser.vehicleList[8].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
 
             startDate = new DateTime(2021, 2, 1, 0, 0, 0);
             lastDay = DateTime.DaysInMonth(2021, 4);
             endDate = new DateTime(2021, 4, lastDay, 23, 59, 59);
-            testUser.vehicleList[10].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+            testUser.vehicleList[9].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
 
             startDate = new DateTime(2021, 2, 1, 0, 0, 0);
             lastDay = DateTime.DaysInMonth(2021, 2);
             endDate = new DateTime(2021, 2, lastDay, 23, 59, 59);
-            testUser.vehicleList[11].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+            testUser.vehicleList[10].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
 
             //FinancialReport financialReport = new FinancialReport();
             financialReport.carparks = new List<Carpark>();
@@ -278,7 +278,7 @@ namespace NP.SE.Assignment
 
                     //Console.WriteLine(currentUser.Name.ToString(),"/n", vehicle.LicenseNumber.ToString(),"/n", vehicle.IUNumber.ToString(),"/n", pass.EndMonth.ToString());
                     Console.WriteLine("Renewing season pass!");
-               
+                    ((NpUser)currentUser).Renew();
                     break;
 
                 case 4:
@@ -288,7 +288,7 @@ namespace NP.SE.Assignment
                 case 5:
                     
                     Console.WriteLine("Terminating season pass!");
-                    Terminate();
+                    ((NpUser)currentUser).Termination();
                     break;
 
                 default:

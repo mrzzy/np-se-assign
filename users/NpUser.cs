@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace NP.SE.Assignment
 {
     /* Represents a NP User that uses Parking System in order to park in NP Carparks */
-    public class NpUser: User
+    public class NpUser : User
     {
         public string PaymentMode { get; private set; }
         public List<Vehicle> vehicleList { get; private set; }
@@ -23,7 +23,7 @@ namespace NP.SE.Assignment
 
         public void applySeasonPass()
         {
-            while(true)
+            while (true)
             {
                 DateTime start = new DateTime();
                 DateTime end = new DateTime();
@@ -70,7 +70,7 @@ namespace NP.SE.Assignment
                         Console.WriteLine("The earliest starting date for season pass applications is this month.");
                         continue;
                     }
-                    
+
                     // check for start date > end date
                     if (start > end)
                     {
@@ -123,6 +123,82 @@ namespace NP.SE.Assignment
                 }
             }
         }
+
+        public void Renew(){
+            int price = 0;
+            bool status = true;
+            
+            while (status)
+            {
+                Console.WriteLine("Enter Number of months");
+                string rpMonth = Console.ReadLine();
+                int nMonth;
+                bool r = Int32.TryParse(rpMonth, out nMonth);
+                if (!r)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Please enter valid number");
+                    break;
+                }
+                if (nMonth < 0 || nMonth > 12)
+                {
+                    Console.WriteLine("Please enter a valid month between 1 - 12");
+                    break;
+                }
+
+                Console.WriteLine("Renewed");
+                
+              
+             
+                Console.WriteLine("You decided to renew" + nMonth + "month(s) of your season parking pass \n");
+                Console.WriteLine("Calculating season pass amount..");
+
+                price = 30;
+                int amt = price * nMonth;
+                Console.WriteLine("Amount needed to pay $" + amt);
+                Console.WriteLine("Pass successfully extended for" + nMonth + "month(s)");
+                status = false;
+
+                    //Add payment record 
+
+               
+
+
+            }
+        }
+
+        public void Termination()
+        {
+            string result;
+            SeasonPass sp;
+            bool success = true;
+            int price = 0;
+            DateTime now = DateTime.Now;
+            bool status = true;
+            while (status)
+            {
+                Console.WriteLine("Reason for termination");
+                Console.ReadLine();
+                Console.WriteLine("Termination on" + now.ToString("F"));
+
+                if (success)
+                {
+
+                    Console.WriteLine("Remove successful");
+                    break;
+
+                }
+                else
+                {
+
+                    Console.WriteLine("Sorry you cannot terminate, because you just apply season pass");
+                }
+
+
+
+            }
+        }
+
 
         public bool registerVehicle(VehicleType type, string licenseNumber, string iUNumber)
         {
