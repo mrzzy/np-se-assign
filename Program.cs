@@ -9,26 +9,71 @@ namespace NP.SE.Assignment
         private static List<User> userList = new List<User>();
         private static User currentUser;
         private static List<Carpark> carparkList = new List<Carpark>();
-
+        private static FinancialReport financialReport;
+        //private static List<FinancialReport.CarparkList> carParkList = new List<FinancialReport.CarparkList>();
         private static bool exit = false;
 
         static void Main(string[] args)
         {
             // dummy data
+
             userList.Add(new NpUser("U01", "Sarah Teo", "npPassword", "98765432", "Credit Card"));
             userList.Add(new NpUser("U02", "Jason Ang", "npPassword", "81729382", "Credit Card"));
             userList.Add(new HrStaff("U03", "John Doe", "hrPassword", "87654321", "Debit Card"));
 
             NpUser testUser = ((NpUser)userList[1]);
             testUser.registerVehicle(VehicleType.Car, "AMN6253L", "6273819203");
+            testUser.registerVehicle(VehicleType.Car, "PLN7895L", "6273819204");
+            testUser.registerVehicle(VehicleType.Car, "FCN0937J", "6273819205");
+            testUser.registerVehicle(VehicleType.Car, "PTU9872C", "6273819206");
 
-            carparkList.Add(new Carpark(1, 30, "A rough description of this carpark", "Address 1"));
-            carparkList.Add(new Carpark(2, 40, "This carpark as descriptive words that can be applied to it.", "Address 2"));
+            FinancialReport financialReport = new FinancialReport();
+            financialReport.carparks = new List<Carpark>();
+
+            
+
+            financialReport.carparks.Add(new Carpark(1, 30, "It is the smallest carpark and it is located near Makan Place", "Address 1"));
+            financialReport.carparks.Add(new Carpark(2, 40, "It is the second biggest carpark and it is located near Munch.", "Address 2"));
+            financialReport.carparks.Add(new Carpark(3, 50, "It is the biggest carpark and it is located near FoodClub.", "Address 2"));
+
+            //carparkList.Add(new Carpark(1, 30, "It is the smallest carpark and it is located near Makan Place", "Address 1"));
+            //carparkList.Add(new Carpark(2, 40, "This carpark as descriptive words that can be applied to it.", "Address 2"));
+            //carparkList.Add(new Carpark(3, 50, "It is the biggest carpark and it is located near FoodClub.", "Address 3"));
+
+            // Parking Records for Month of July for Car for All Carparks
+            ParkingRecord parkingRecord1 = new ParkingRecord(001, testUser.vehicleList[0], financialReport.carparks[0], new DateTime(2020, 7, 9, 5, 15, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 9, 10, 15, 0);
+            parkingRecord1.AmountCharged = testUser.vehicleList[0].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(300));
+            financialReport.carparks[0].ParkingRecordList.Add(parkingRecord1);
+
+            ParkingRecord parkingRecord2 = new ParkingRecord(002, testUser.vehicleList[1], financialReport.carparks[0], new DateTime(2020, 7, 10, 9, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 10, 16, 30, 0);
+            parkingRecord1.AmountCharged = testUser.vehicleList[1].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
+            financialReport.carparks[0].ParkingRecordList.Add(parkingRecord2);
+
+            ParkingRecord parkingRecord3 = new ParkingRecord(003, testUser.vehicleList[2], financialReport.carparks[0], new DateTime(2020, 7, 11, 7, 25, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 11, 21, 25, 0);
+            parkingRecord1.AmountCharged = testUser.vehicleList[2].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(840));
+            financialReport.carparks[0].ParkingRecordList.Add(parkingRecord3);
+
+            ParkingRecord parkingRecord4 = new ParkingRecord(004, testUser.vehicleList[1], financialReport.carparks[1], new DateTime(2020, 7, 11, 7, 25, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 11, 20, 25, 0);
+            parkingRecord1.AmountCharged = testUser.vehicleList[1].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(780));
+            financialReport.carparks[0].ParkingRecordList.Add(parkingRecord4);
+
+            ParkingRecord parkingRecord5 = new ParkingRecord(005, testUser.vehicleList[3], financialReport.carparks[1], new DateTime(2020, 7, 11, 10, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2020, 7, 11, 12, 30, 0);
+            parkingRecord1.AmountCharged = testUser.vehicleList[3].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(120));
+            financialReport.carparks[0].ParkingRecordList.Add(parkingRecord5);
+
+
+
+            // Parking Records for Month of 
 
             // uncomment to test out parking and exit
-            // carparkList[0].park(testUser.vehicleList[0]);
-            // System.Threading.Thread.Sleep(120000); // sleep for 2 minute
-            // carparkList[0].exit(testUser.vehicleList[0]);
+            //carparkList[0].park(testUser.vehicleList[0]);
+            //System.Threading.Thread.Sleep(120000); // sleep for 2 minute
+            //carparkList[0].exit(testUser.vehicleList[0]);
 
             while (!exit)
             {
@@ -299,6 +344,10 @@ namespace NP.SE.Assignment
             {
                 return -1;
             }
+        }
+
+        private class CarparkList : FinancialReport.CarparkList
+        {
         }
     }
 }
