@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace NP.SE.Assignment
@@ -326,7 +327,147 @@ namespace NP.SE.Assignment
                         break;
 
                     case 1:
-                        Console.WriteLine("Processing season pass application!");
+                        // Query season pass applications: season pass in unprocessed state
+                        List<NpUser> npUsers = userList
+                            .FindAll((user) => user is NpUser)
+                            .Cast<NpUser>().ToList();
+
+                        List<SeasonPass> unprocessedSeasonPasses = npUsers
+                            .SelectMany((user) => user.vehicleList)
+                            .Where((vehicle) => vehicle.SPass != null)
+                            .Select((vehicle) => vehicle.SPass)
+                            .Where((seasonPass) => seasonPass.State is UnprocessedSeasonPassState)
+                            .ToList();
+                        HashSet<int> unprocessedIds = unprocessedSeasonPasses
+                            .Select((seasonPass) => seasonPass.Id)
+                            .ToHashSet();
+
+                        // Query mapping from SeasonPass Id to NpUser and Vehicle
+                        Dictionary<int, NpUser> passUserMap = npUsers
+                            // generate combinations of (SeasonPass Id, NpUser) pairs
+                            .SelectMany((user) => unprocessedIds
+                                    .Select((id) => new {SeasonPassId=id, NpUser=user}))
+                            // filter to only pairs of NpUser that actually does have have the season pass with id (via vehicle)
+                            .Where((userPassId) => userPassId.NpUser.vehicleList
+                                    .Any((vehicle) => vehicle.SPass != null && vehicle.SPass.Id  == userPassId.SeasonPassId))
+                            // contruct dictionary using pairs
+                            .ToDictionary((userPassId) => userPassId.SeasonPassId, (userPassId) => userPassId.NpUser);
+
+                        // Query mapping from SeasonPass Id to NpUser and Vehicle
+                        Dictionary<int, Vehicle> passVehicleMap = npUsers
+                            .SelectMany((user) => user.vehicleList)
+                            // generate combinations of (SeasonPass Id, Vehicle) pairs
+                            .SelectMany((vechicle) => unprocessedIds
+                                    .Select((id) => new {SeasonPassId=id, Vehicle=vechicle}))
+                            // filter to only pairs of Vehicle that actually does have the season pass with id
+                            .Where((vechiclePassId) =>
+                                    vechiclePassId.Vehicle.SPass != null &&
+                                    vechiclePassId.Vehicle.SPass.Id == vechiclePassId.SeasonPassId)
+                            // contruct dictionary using pairs
+                            .ToDictionary((vehiclePassId) => vehiclePassId.SeasonPassId, (vehiclePassId) => vehiclePassId.Vehicle);
+
+
+                        // Prompt season pass applications as menu to admin to select
+                        Func<int> promptApplications = () => {
+                            // display season pass applications for selection
+                            Console.WriteLine("==============[Season Pass Applications]================");
+                            for (int i = 1; i <= unprocessedSeasonPasses.Count; i++)
+                            {
+                                int passId = unprocessedSeasonPasses[i-1].Id;
+                                Console.WriteLine($"({i}) Application {passId} by {passUserMap[passId].Name}");
+                            }
+                            Console.WriteLine("(0) Exit");
+                            Console.WriteLine("==============[Season Pass Applications]================");
+                            // prompt to allow admin to select application
+                            Console.Write("Option: ");
+                            int selectedOption = convertOptionToInt(Console.ReadLine());
+                            Console.WriteLine("");
+                            return selectedOption;
+                        };
+
+                        while(true)
+                        {
+                            int selectedOption = promptApplications();
+                            if(selectedOption == 0)
+                            {
+                                break; // exit
+                            }
+                            else if(selectedOption < 0 || selectedOption > unprocessedSeasonPasses.Count)
+                            {
+                                // bad option selected: warn user and prompt the user again
+                                Console.WriteLine($"Please pick an option from 0 to {unprocessedSeasonPasses.Count}!");
+                                continue;
+                            }
+
+                            // Display the SeasonPass to allow the Admin to review or rejected
+                            SeasonPass seasonPass = unprocessedSeasonPasses[selectedOption - 1];
+                            Console.WriteLine($"==============[Season Pass Application {seasonPass.Id}]================");
+
+                            Console.WriteLine("[Applicant]");
+                            NpUser applicant = passUserMap[seasonPass.Id];
+                            Console.WriteLine($"User Id: {applicant.UserId}");
+                            Console.WriteLine($"Name: {applicant.Name}");
+                            Console.WriteLine($"Mobile Number: {applicant.MobileNumber}");
+                            Console.WriteLine($"Payment Mode: {applicant.PaymentMode}");
+                            Console.WriteLine($"No. Owned Vehicles: {applicant.vehicleList.Count}");
+
+                            Console.WriteLine("");
+                            Console.WriteLine("[Vehicle]");
+                            Vehicle vehicle = passVehicleMap[seasonPass.Id];
+                            Console.WriteLine($"Vehicle Type: {vehicle.Type}");
+                            Console.WriteLine($"License Number: {vehicle.LicenseNumber}");
+                            Console.WriteLine($"IU Number: {vehicle.IUNumber}");
+
+                            Console.WriteLine("");
+                            Console.WriteLine("[Season Pass]");
+                            Console.WriteLine($"Season Pass Id: {seasonPass.Id}");
+                            string startMonthStr = seasonPass.StartMonth.ToString("mm/yyyy");
+                            Console.WriteLine($"Start Month: {startMonthStr}");
+                            string endMonthStr = seasonPass.EndMonth.ToString("mm/yyyy");
+                            Console.WriteLine($"End Month: {endMonthStr}");
+                            string paidAmountStr = seasonPass.PaidAmount.ToString("c");
+                            Console.WriteLine($"Paid Amount: {paidAmountStr}");
+
+                            Console.WriteLine($"==============[Season Pass Application {seasonPass.Id}]================");
+
+                            Func<int> promptReview = () => {
+                                Console.WriteLine("(1) Approve");
+                                Console.WriteLine("(2) Reject");
+                                Console.WriteLine("(0) Exit");
+                                // prompt to allow admin to select application
+                                Console.Write("Option: ");
+                                int selectedOption = convertOptionToInt(Console.ReadLine());
+                                return selectedOption;
+                            };
+
+                            while(true)
+                            {
+                                int reviewOption = promptReview();
+                                if(reviewOption == 0)
+                                {
+                                    break; // exit
+                                }
+                                else if(reviewOption < 0 || reviewOption > 2)
+                                {
+                                    // bad option selected: warn user and prompt the user again
+                                    Console.WriteLine("Please pick an option from 0 to 2");
+                                    continue;
+                                }
+
+                                if(reviewOption == 1)
+                                {
+                                    seasonPass.Approve();
+                                }
+                                else if(reviewOption == 2)
+                                {
+                                    seasonPass.Reject();
+                                }
+                                break; // exit
+
+                            }
+                            break; // exit
+                        }
+
                         break;
 
                     case 2:
