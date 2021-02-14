@@ -46,7 +46,7 @@ namespace NP.SE.Assignment
                 if (record.Vehicle == vehicle && record.ExitTime is null)
                 {
                     // set exit time of parking record
-                    record.setExitTime(DateTime.Now);
+                    record.ExitTime = DateTime.Now;
 
                     // set duration of parking
                     TimeSpan time = ((DateTime)(record.ExitTime)).Subtract(record.EntryTime);
@@ -58,7 +58,7 @@ namespace NP.SE.Assignment
 
                     // set parking price
                     double amt = vehicle.PricingStrategy.computePrice(vehicle.Type, time);
-                    record.setAmtCharged(amt);
+                    record.AmountCharged = amt;
                 }
             }
         }
