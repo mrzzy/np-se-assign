@@ -114,7 +114,13 @@ namespace NP.SE.Assignment
                     break;
 
                 case 1:
-                    Console.WriteLine("Registering Vehicle!");
+                    bool success = registerVehicle();
+
+                    if (success)
+                        Console.WriteLine("Successfully registereed vehicle!");
+                    else
+                        Console.WriteLine("Please enter valid inputs!");
+
                     break;
 
                 case 2:
@@ -181,7 +187,7 @@ namespace NP.SE.Assignment
                 }
         }
 
-        /*==================================== OTHERS ====================================*/
+        /*==================================== MENU FUNCTIONS (?) ====================================*/
         static void login()
         {
             Console.Write("User ID: ");
@@ -197,6 +203,73 @@ namespace NP.SE.Assignment
                     currentUser = user;
                     break;
                 }
+            }
+        }
+
+        static bool registerVehicle()
+        {
+            VehicleType vehicleType = getVehicleType();
+            string licenseNumber = getLicenseNumber();
+            string iUNumber = getIUNumber();
+
+            return ((NpUser)currentUser).registerVehicle(vehicleType, licenseNumber, iUNumber);
+        }
+
+        /*==================================== OTHERS ====================================*/
+        static VehicleType getVehicleType()
+        {
+            while (true)
+            {
+                // VehicleType type, string licenseNumber, int iUNumber, NpUser owner
+
+                // Vehicle Type
+                Console.WriteLine("1. Type of vehicle");
+                Console.WriteLine("(1) Motorcycle");
+                Console.WriteLine("(2) Car");
+                Console.WriteLine("(3) Heavy Vehicles e.g. truck, bus");
+                Console.Write("Option: ");
+                string optStr = Console.ReadLine();
+                Console.WriteLine("");
+                int optInt = convertOptionToInt(optStr);
+
+                switch (optInt)
+                {
+                    case 1:
+                        return VehicleType.Motorcycle;
+
+                    case 2:
+                        return VehicleType.Car;
+
+                    case 3:
+                        return VehicleType.Heavy;
+
+                    default:
+                        Console.WriteLine("Please enter a number from 1 to 3!\n");
+                        break;
+                }
+            }
+        }
+
+        static string getLicenseNumber()
+        {
+            while (true)
+            {
+                Console.Write("License Number: ");
+                string optStr = Console.ReadLine();
+
+                return optStr;
+            }
+        }
+
+        static string getIUNumber()
+        {
+            while (true)
+            {
+                Console.Write("IU Number: ");
+                string optStr = Console.ReadLine();
+                Console.WriteLine("");
+
+                return optStr;
             }
         }
 
