@@ -10,6 +10,8 @@ namespace NP.SE.Assignment
         private static User currentUser;
         private static List<Carpark> carparkList = new List<Carpark>();
         private static FinancialReport financialReport;
+        private static Vehicle vehicle;
+        private static SeasonPass sps;
         //private static List<FinancialReport.CarparkList> carParkList = new List<FinancialReport.CarparkList>();
         private static bool exit = false;
 
@@ -188,7 +190,11 @@ namespace NP.SE.Assignment
                     break;
 
                 case 3:
+
+
+                    //Console.WriteLine(currentUser.Name.ToString(),"/n", vehicle.LicenseNumber.ToString(),"/n", vehicle.IUNumber.ToString(),"/n", pass.EndMonth.ToString());
                     Console.WriteLine("Renewing season pass!");
+               
                     break;
 
                 case 4:
@@ -196,7 +202,9 @@ namespace NP.SE.Assignment
                     break;
 
                 case 5:
+                    
                     Console.WriteLine("Terminating season pass!");
+                    Terminate();
                     break;
 
                 default:
@@ -308,6 +316,12 @@ namespace NP.SE.Assignment
                         break;
                 }
             }
+        }
+        /*==================================== Renew ====================================*/
+
+        static SeasonPass Terminate()
+        {
+            return Terminate();
         }
 
         static string getLicenseNumber()
