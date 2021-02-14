@@ -140,6 +140,7 @@ namespace NP.SE.Assignment
 
                 case 2:
                     Console.WriteLine("Applying for season pass!");
+                    ((NpUser)currentUser).applySeasonPass();
                     break;
 
                 case 3:
