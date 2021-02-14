@@ -350,7 +350,7 @@ namespace NP.SE.Assignment
                             // filter to only pairs of NpUser that actually does have have the season pass with id (via vehicle)
                             .Where((userPassId) => userPassId.NpUser.VehicleList
                                     .Any((vehicle) => vehicle.SPass != null && vehicle.SPass.Id  == userPassId.SeasonPassId))
-                            // contruct dictionary using pairs
+                            // construct dictionary using pairs
                             .ToDictionary((userPassId) => userPassId.SeasonPassId, (userPassId) => userPassId.NpUser);
 
                         // Query mapping from SeasonPass Id to NpUser and Vehicle
@@ -363,7 +363,7 @@ namespace NP.SE.Assignment
                             .Where((vechiclePassId) =>
                                     vechiclePassId.Vehicle.SPass != null &&
                                     vechiclePassId.Vehicle.SPass.Id == vechiclePassId.SeasonPassId)
-                            // contruct dictionary using pairs
+                            // construct dictionary using pairs
                             .ToDictionary((vehiclePassId) => vehiclePassId.SeasonPassId, (vehiclePassId) => vehiclePassId.Vehicle);
 
 
