@@ -2,7 +2,5 @@
 public enum VehicleType
 {
     Motorcycle,
-    Car,
-    // heavy vehicles like trucks and buses
-    Heavy,
+    Car
 }

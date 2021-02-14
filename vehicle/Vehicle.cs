@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace NP.SE.Assignment
 {
     /** Represents a Vehicle at parks in NP Carparks */
@@ -7,7 +9,9 @@ namespace NP.SE.Assignment
         public string IUNumber { get; private set; }
         public NpUser Owner { get; private set; }
         public IIPricingStrategy PricingStrategy { get; private set; }
-        public SeasonPass SPass { get; private set; }
+        public SeasonPass SPass { get; set; }
+
+        public List<ParkingRecord> parkingRecordList { get; set; }
 
         public Vehicle(VehicleType type, string licenseNumber, string iUNumber, NpUser owner)
         {
@@ -16,6 +20,8 @@ namespace NP.SE.Assignment
             IUNumber = iUNumber;
             Owner = owner;
             PricingStrategy = new PerMinutePricingStrategy();
+            parkingRecordList = new List<ParkingRecord>();
+            SPass = null;
         }
 
         public Vehicle(VehicleType type, string licenseNumber, string iUNumber, NpUser owner, IIPricingStrategy pricingStrategy)
