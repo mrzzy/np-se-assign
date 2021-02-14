@@ -14,9 +14,6 @@ namespace NP.SE.Assignment
                 case VehicleType.Car:
                     // $2 per hour of cars
                     return (2.0 / 60.0) * duration.TotalMinutes;
-                case VehicleType.Heavy:
-                    // $5 per hour for heavy vehiclef
-                    return (5.0 / 60.0) * duration.TotalMinutes;
                 default:
                     throw new NotSupportedException("Unsupported VehicleType given: " + vehicleType.ToString());
             }
