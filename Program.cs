@@ -133,7 +133,7 @@ namespace NP.SE.Assignment
             parkingRecord1.AmountCharged = testUser.vehicleList[7].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord13);
 
-            ParkingRecord parkingRecord16 = new ParkingRecord(016, testUser.vehicleList[11], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
+            ParkingRecord parkingRecord16 = new ParkingRecord(016, testUser.vehicleList[10], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
             parkingRecord1.ExitTime = new DateTime(2020, 2, 15, 13, 30, 0);
             parkingRecord1.AmountCharged = 30;
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord16);

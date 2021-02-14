@@ -23,6 +23,37 @@ namespace NP.SE.Assignment
             
             throw new NotImplementedException();
         }
+        public virtual SeasonPassState Termination()
+        {
+            string result;
+            SeasonPass sp;
+            bool success = true;
+            int price = 0;
+            DateTime now = DateTime.Now;
+            bool status = true;
+            while (status)
+            {
+                Console.WriteLine("Reason for termination");
+                Console.ReadLine();
+                Console.WriteLine("Termination on" + now.ToString("F"));
+
+                if (success)
+                {
+
+                    Console.WriteLine("Remove successful");
+
+                }
+                else
+                {
+                    
+                    Console.WriteLine("Sorry you cannot terminate, because you just apply season pass");
+                }
+                
+
+
+            }
+            return Termination();
+        }
 
         public virtual SeasonPassState Renew(int nMonth)
             
