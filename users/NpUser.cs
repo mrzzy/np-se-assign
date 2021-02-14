@@ -58,7 +58,8 @@ namespace NP.SE.Assignment
 
                     int endy = Convert.ToInt32(endMonthStr.Substring(0, 4));
                     int endm = Convert.ToInt32(endMonthStr.Substring(5, 2));
-                    end = new DateTime(endy, endm, 1, 23, 59, 59);
+                    int lastDay = DateTime.DaysInMonth(endy, endm);
+                    end = new DateTime(endy, endm, lastDay, 23, 59, 59);
 
                     // check for start date < now
                     DateTime today = DateTime.Now;
@@ -100,7 +101,7 @@ namespace NP.SE.Assignment
                 {
                     // vehicle have season pass?
                     if (vehicle.SPass != null)
-                        Console.WriteLine("This vehicle already has a season pass!");
+                        Console.WriteLine("This vehicle already has a season pass!\n");
 
                     else
                     {
@@ -110,7 +111,7 @@ namespace NP.SE.Assignment
                         Console.WriteLine("Payment fees: $" + Convert.ToString(paymentFees));
 
                         // execute make payment use case
-                        Console.WriteLine("Executing Make Payment fees");
+                        Console.WriteLine("Executing Make Payment fees\n");
 
                         // create season pass in unprocessed state
                         Random rnd = new Random();
