@@ -8,12 +8,27 @@ namespace NP.SE.Assignment
 
         private static List<User> userList = new List<User>();
         private static User currentUser;
+        private static List<Carpark> carparkList = new List<Carpark>();
+
         private static bool exit = false;
 
         static void Main(string[] args)
         {
+            // dummy data
             userList.Add(new NpUser("U01", "Sarah Teo", "npPassword", "98765432", "Credit Card"));
-            userList.Add(new HrStaff("U02", "John Doe", "hrPassword", "87654321", "Debit Card"));
+            userList.Add(new NpUser("U02", "Jason Ang", "npPassword", "81729382", "Credit Card"));
+            userList.Add(new HrStaff("U03", "John Doe", "hrPassword", "87654321", "Debit Card"));
+
+            NpUser testUser = ((NpUser)userList[1]);
+            testUser.registerVehicle(VehicleType.Car, "AMN6253L", "6273819203");
+
+            carparkList.Add(new Carpark(1, 30, "A rough description of this carpark", "Address 1"));
+            carparkList.Add(new Carpark(2, 40, "This carpark as descriptive words that can be applied to it.", "Address 2"));
+
+            // uncomment to test out parking and exit
+            // carparkList[0].park(testUser.vehicleList[0]);
+            // System.Threading.Thread.Sleep(120000); // sleep for 2 minute
+            // carparkList[0].exit(testUser.vehicleList[0]);
 
             while (!exit)
             {
