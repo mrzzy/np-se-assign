@@ -6,7 +6,7 @@ namespace NP.SE.Assignment
    
     public class FinancialReport
     {
-        public List<ParkingRecord> records;
+        public List<Carpark> carparks;
         public int month; 
         public string GenerateReport()
         {
