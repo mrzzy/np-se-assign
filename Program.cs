@@ -42,6 +42,23 @@ namespace NP.SE.Assignment
             testUser.registerVehicle(VehicleType.Car, "FGH0972H", "6273819213"); // have season pass
             testUser.registerVehicle(VehicleType.Motorcycle, "MTR6726E", "6273819214"); // have season pass
 
+            // create season passes
+            Random rnd = new Random();
+            DateTime startDate = new DateTime(2021, 1, 1, 0, 0, 0);
+            var lastDay = DateTime.DaysInMonth(2020,1);
+            DateTime endDate = new DateTime(2021, 1, lastDay, 23, 59, 59);
+            testUser.vehicleList[9].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
+            startDate = new DateTime(2021, 2, 1, 0, 0, 0);
+            lastDay = DateTime.DaysInMonth(2021, 4);
+            endDate = new DateTime(2021, 4, lastDay, 23, 59, 59);
+            testUser.vehicleList[10].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
+            startDate = new DateTime(2021, 2, 1, 0, 0, 0);
+            lastDay = DateTime.DaysInMonth(2021, 2);
+            endDate = new DateTime(2021, 2, lastDay, 23, 59, 59);
+            testUser.vehicleList[11].SPass = new SeasonPass(rnd.Next(), startDate, endDate);
+
             //FinancialReport financialReport = new FinancialReport();
             financialReport.carparks = new List<Carpark>();
 
@@ -54,44 +71,44 @@ namespace NP.SE.Assignment
             //carparkList.Add(new Carpark(2, 40, "This carpark as descriptive words that can be applied to it.", "Address 2"));
             //carparkList.Add(new Carpark(3, 50, "It is the biggest carpark and it is located near FoodClub.", "Address 3"));
 
-            // Parking Records for Month of July 2020 for Car for All Carparks
-            ParkingRecord parkingRecord1 = new ParkingRecord(001, testUser.vehicleList[0], financialReport.carparks[0], new DateTime(2020, 7, 9, 5, 15, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 7, 9, 10, 15, 0);
+            // Parking Records for Month of January 2021 for Car for All Carparks
+            ParkingRecord parkingRecord1 = new ParkingRecord(001, testUser.vehicleList[0], financialReport.carparks[0], new DateTime(2021, 1, 9, 5, 15, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 9, 10, 15, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[0].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(300));
             financialReport.carparks[0].ParkingRecordList.Add(parkingRecord1);
 
-            ParkingRecord parkingRecord2 = new ParkingRecord(002, testUser.vehicleList[1], financialReport.carparks[0], new DateTime(2021, 7, 10, 9, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2021, 7, 10, 16, 30, 0);
+            ParkingRecord parkingRecord2 = new ParkingRecord(002, testUser.vehicleList[1], financialReport.carparks[0], new DateTime(2021, 1, 10, 9, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 10, 16, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[1].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[0].ParkingRecordList.Add(parkingRecord2);
 
-            ParkingRecord parkingRecord3 = new ParkingRecord(003, testUser.vehicleList[2], financialReport.carparks[0], new DateTime(2020, 7, 11, 7, 25, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 7, 11, 21, 25, 0);
+            ParkingRecord parkingRecord3 = new ParkingRecord(003, testUser.vehicleList[2], financialReport.carparks[0], new DateTime(2021, 1, 11, 7, 25, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 11, 21, 25, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[2].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(840));
             financialReport.carparks[0].ParkingRecordList.Add(parkingRecord3);
 
-            ParkingRecord parkingRecord4 = new ParkingRecord(004, testUser.vehicleList[1], financialReport.carparks[1], new DateTime(2020, 7, 21, 7, 25, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 7, 21, 20, 25, 0);
+            ParkingRecord parkingRecord4 = new ParkingRecord(004, testUser.vehicleList[1], financialReport.carparks[1], new DateTime(2021, 1, 21, 7, 25, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 21, 20, 25, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[1].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(780));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord4);
 
-            ParkingRecord parkingRecord5 = new ParkingRecord(005, testUser.vehicleList[3], financialReport.carparks[1], new DateTime(2021, 7, 13, 10, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2021, 7, 13, 12, 30, 0);
+            ParkingRecord parkingRecord5 = new ParkingRecord(005, testUser.vehicleList[3], financialReport.carparks[1], new DateTime(2021, 1, 13, 10, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 13, 12, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[3].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(120));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord5);
 
-            ParkingRecord parkingRecord6 = new ParkingRecord(006, testUser.vehicleList[4], financialReport.carparks[2], new DateTime(2021, 7, 22, 14, 10, 0));
-            parkingRecord1.ExitTime = new DateTime(2021, 7, 22, 16, 10, 0);
+            ParkingRecord parkingRecord6 = new ParkingRecord(006, testUser.vehicleList[4], financialReport.carparks[2], new DateTime(2021, 1, 22, 14, 10, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 22, 16, 10, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[4].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(120));
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord6);
 
-            ParkingRecord parkingRecord7 = new ParkingRecord(007, testUser.vehicleList[5], financialReport.carparks[2], new DateTime(2020, 7, 10, 9, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 7, 10, 16, 30, 0);
+            ParkingRecord parkingRecord7 = new ParkingRecord(007, testUser.vehicleList[5], financialReport.carparks[2], new DateTime(2021, 1, 10, 9, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 10, 16, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[5].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord7);
 
-            ParkingRecord parkingRecord14 = new ParkingRecord(014, testUser.vehicleList[9], financialReport.carparks[2], new DateTime(2020, 7, 25, 12, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 7, 25, 16, 30, 0);
+            ParkingRecord parkingRecord14 = new ParkingRecord(014, testUser.vehicleList[9], financialReport.carparks[2], new DateTime(2021, 1, 25, 12, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 1, 25, 16, 30, 0);
             parkingRecord1.AmountCharged = 30;
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord14);
 
@@ -107,17 +124,17 @@ namespace NP.SE.Assignment
             parkingRecord1.AmountCharged = testUser.vehicleList[2].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord9);
 
-            ParkingRecord parkingRecord10 = new ParkingRecord(010, testUser.vehicleList[3], financialReport.carparks[2], new DateTime(2020, 2, 11, 6, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 2, 6, 13, 30, 0);
+            ParkingRecord parkingRecord10 = new ParkingRecord(010, testUser.vehicleList[3], financialReport.carparks[2], new DateTime(2021, 2, 11, 6, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 2, 6, 13, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[2].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord10);
 
-            ParkingRecord parkingRecord15 = new ParkingRecord(015, testUser.vehicleList[10], financialReport.carparks[2], new DateTime(2020, 2, 11, 6, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 2, 6, 13, 30, 0);
+            ParkingRecord parkingRecord15 = new ParkingRecord(015, testUser.vehicleList[10], financialReport.carparks[2], new DateTime(2021, 2, 11, 6, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 2, 11, 13, 30, 0);
             parkingRecord1.AmountCharged = 30;
             financialReport.carparks[2].ParkingRecordList.Add(parkingRecord15);
 
-            // Parking Records for Month of January 2021 in Carpark 2 for Motorcycle
+            // Parking Records for Month of February 2021 in Carpark 2 for Motorcycle
             ParkingRecord parkingRecord11 = new ParkingRecord(011, testUser.vehicleList[6], financialReport.carparks[1], new DateTime(2021, 2, 10, 5, 30, 0));
             parkingRecord1.ExitTime = new DateTime(2021, 2, 10, 12, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[6].PricingStrategy.computePrice(VehicleType.Motorcycle, TimeSpan.FromMinutes(420));
@@ -128,13 +145,13 @@ namespace NP.SE.Assignment
             parkingRecord1.AmountCharged = testUser.vehicleList[7].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord12);
 
-            ParkingRecord parkingRecord13 = new ParkingRecord(013, testUser.vehicleList[8], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 2, 15, 13, 30, 0);
+            ParkingRecord parkingRecord13 = new ParkingRecord(013, testUser.vehicleList[8], financialReport.carparks[1], new DateTime(2021, 2, 13, 6, 30, 0));
+            parkingRecord1.ExitTime = new DateTime(2021, 2, 13, 13, 30, 0);
             parkingRecord1.AmountCharged = testUser.vehicleList[7].PricingStrategy.computePrice(VehicleType.Car, TimeSpan.FromMinutes(420));
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord13);
 
             ParkingRecord parkingRecord16 = new ParkingRecord(016, testUser.vehicleList[10], financialReport.carparks[1], new DateTime(2020, 2, 15, 6, 30, 0));
-            parkingRecord1.ExitTime = new DateTime(2020, 2, 15, 13, 30, 0);
+            parkingRecord1.ExitTime = new DateTime(2021, 2, 5, 13, 30, 0);
             parkingRecord1.AmountCharged = 30;
             financialReport.carparks[1].ParkingRecordList.Add(parkingRecord16);
 
@@ -253,6 +270,7 @@ namespace NP.SE.Assignment
 
                 case 2:
                     Console.WriteLine("Applying for season pass!");
+                    ((NpUser)currentUser).applySeasonPass();
                     break;
 
                 case 3:

@@ -31,7 +31,11 @@ namespace NP.SE.Assignment
                 id = ParkingRecordList[ParkingRecordList.Count - 1].Id + 1;
             }
 
-            ParkingRecordList.Add(new ParkingRecord(id, vehicle, this, DateTime.Now));
+            ParkingRecord parkingRecord = new ParkingRecord(id, vehicle, this, DateTime.Now);
+            ParkingRecordList.Add(parkingRecord);
+
+            // add parking record to vehicle
+            vehicle.parkingRecordList.Add(parkingRecord);
 
             // call vehicle's season parking parked method
             if (vehicle.SPass != null)
