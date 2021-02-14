@@ -9,8 +9,8 @@ namespace NP.SE.Assignment
         public Vehicle Vehicle {get; private set; }
         public Carpark Carpark {get; private set; }
         public DateTime EntryTime  { get; private set; }
-        public DateTime? ExitTime { get; private set; }
-        public double AmountCharged { get; private set; }
+        public DateTime? ExitTime { get; set; }
+        public double AmountCharged { get; set; }
 
         public ParkingRecord(int id, Vehicle vehicle, Carpark carpark, DateTime entryTime)
         {
@@ -20,17 +20,6 @@ namespace NP.SE.Assignment
             EntryTime = entryTime;
             ExitTime = null;
             AmountCharged = 0.0;
-        }
-
-        public void setExitTime(DateTime endTime)
-        {
-            if (ExitTime == null)
-                ExitTime = endTime;
-        }
-
-        public void setAmtCharged(double amt)
-        {
-            AmountCharged = amt;
         }
     }
 }
