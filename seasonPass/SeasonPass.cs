@@ -9,7 +9,7 @@ namespace NP.SE.Assignment
         public DateTime StartMonth { get; private set; }
         public DateTime EndMonth { get; private set; }
         public double PaidAmount { get; private set; }
-        private SeasonPassState State { get; set; }
+        public SeasonPassState State { get; private set; }
 
         public SeasonPass(int id, DateTime startMonth, DateTime endMonth)
         {
